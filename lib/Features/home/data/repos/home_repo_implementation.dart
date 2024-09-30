@@ -21,8 +21,12 @@ class HomeRepoImpl extends HomeRepo {
         books.add(BookModel.fromJson(book));
       }
       return right(books);
-    } on DioException catch (e) {
-      return left(ServerFailure.fromDioError(e));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      } else {
+        return left(ServerFailure(e.toString()));
+      }
     }
   }
 
