@@ -22,9 +22,7 @@ class CustomBookDetailsAppBar extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {
-              GoRouter.of(context).pop();
-            },
+            onPressed: () {},
             icon: const Icon(
               FontAwesomeIcons.cartShopping,
               color: Colors.white,

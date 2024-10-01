@@ -1,17 +1,20 @@
+import 'dart:developer';
+
 import 'package:bookly/Features/home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
-import 'package:bookly/Features/home/presentation/views/widgets/best_seller_list_view_item.dart';
+import 'package:bookly/Features/home/presentation/views/widgets/newest_books_list_view_item.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BestSellerListView extends StatelessWidget {
-  const BestSellerListView({super.key});
+class NewestBooksListView extends StatelessWidget {
+  const NewestBooksListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NewestBooksCubit, NewestBooksState>(
       builder: (context, state) {
         if (state is NewestBooksSuccess) {
+          log(state.books.length.toString());
           return ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
@@ -19,7 +22,7 @@ class BestSellerListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 20.0),
-                  child: BookListViewItem(book: state.books[index]),
+                  child: NewestBookListViewItem(book: state.books[index]),
                 );
               });
         } else if (state is NewestBooksFailure) {

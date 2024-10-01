@@ -7,22 +7,22 @@ import 'package:bookly/core/utils/style.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key, required this.book});
+class NewestBookListViewItem extends StatelessWidget {
+  const NewestBookListViewItem({super.key, required this.book});
   final BookModel book;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kBookDetailsView);
+        GoRouter.of(context).push(AppRouter.kBookDetailsView,extra: book);
       },
       child: SizedBox(
         height: 125,
         child: Row(
           children: [
             CustomBookImage(
-                imageUrl: book.volumeInfo.imageLinks.smallThumbnail),
+                imageUrl: book.volumeInfo.imageLinks?.smallThumbnail ?? ''),
             const SizedBox(width: 30),
             Expanded(
               child: Column(

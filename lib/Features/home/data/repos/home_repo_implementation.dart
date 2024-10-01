@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/Features/home/data/repos/home_repo.dart';
 import 'package:bookly/core/errors/failure.dart';
@@ -15,10 +17,14 @@ class HomeRepoImpl extends HomeRepo {
     try {
       var data = await apiServices.get(
           endPoint:
-              'volumes?Filtering=free-ebooks&q=subject:programming&Sorting=newest');
+              'volumes?Filtering=free-ebooks&Sorting=newest&q=programming');
       List<BookModel> books = [];
       for (var book in data['items']) {
-        books.add(BookModel.fromJson(book));
+        try {
+          books.add(BookModel.fromJson(book));
+        } catch (e) {
+          log(book.toString());
+        }
       }
       return right(books);
     } catch (e) {
@@ -34,10 +40,35 @@ class HomeRepoImpl extends HomeRepo {
   Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
     try {
       var data = await apiServices.get(
-          endPoint: 'volumes?Filtering=free-ebooks&q=subject:programming');
+          endPoint: 'volumes?Filtering=free-ebooks &q=computer science');
       List<BookModel> books = [];
-      for (var item in data['items']) {
-        books.add(BookModel.fromJson(item));
+      for (var book in data['items']) {
+        try {
+          books.add(BookModel.fromJson(book));
+        } catch (e) {
+          log(book.toString());
+        }
+      }
+      return right(books);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<BookModel>>> fetchSimilarBooks(
+      {required String category}) async {
+    try {
+      var data = await apiServices.get(
+          endPoint:
+              'volumes?Filtering=free-ebooks&Sorting=newest&q=computer science');
+      List<BookModel> books = [];
+      for (var book in data['items']) {
+        try {
+          books.add(BookModel.fromJson(book));
+        } catch (e) {
+          log(book.toString());
+        }
       }
       return right(books);
     } on DioException catch (e) {
