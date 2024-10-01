@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bookly/Features/home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/newest_books_list_view_item.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_error_widget.dart';
@@ -14,17 +12,17 @@ class NewestBooksListView extends StatelessWidget {
     return BlocBuilder<NewestBooksCubit, NewestBooksState>(
       builder: (context, state) {
         if (state is NewestBooksSuccess) {
-          log(state.books.length.toString());
           return ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.zero,
-              itemCount: state.books.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: NewestBookListViewItem(book: state.books[index]),
-                );
-              });
+            physics: const BouncingScrollPhysics(),
+            padding: EdgeInsets.zero,
+            itemCount: state.books.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: NewestBookListViewItem(book: state.books[index]),
+              );
+            },
+          );
         } else if (state is NewestBooksFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
