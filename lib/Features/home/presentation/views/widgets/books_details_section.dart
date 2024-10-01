@@ -33,9 +33,9 @@ class BookDetailsSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        const BookRating(
-          mainAxisAlignment: MainAxisAlignment.center,
-        ),
+        // const BookRating(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        // ),
         const SizedBox(height: 25),
         const BooksAction(),
       ],
