@@ -1,5 +1,6 @@
 import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_button.dart';
+import 'package:bookly/core/helper/show_msg_snakbar.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,7 +15,18 @@ class BooksAction extends StatelessWidget {
         children: [
           Expanded(
             child: CustomButton(
-              onPressed: () {},
+              onPressed: () async {
+                try {
+                  Uri uri = Uri.parse(book.accessInfo!.pdf!.acsTokenLink!);
+                  if (await canLaunchUrl(uri)) {
+                    launchUrl(uri);
+                  }
+                } catch (e) {
+                  if (context.mounted) {
+                    snackBarMsg(context, 'Unable to Download Book');
+                  }
+                }
+              },
               text: 'Free',
               backgroundColor: Colors.white,
               textColor: Colors.black,

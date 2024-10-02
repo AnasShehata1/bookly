@@ -40,7 +40,7 @@ class NewestBookListViewItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    book.volumeInfo.authors![0],
+                    book.volumeInfo.authors?[0]??'',
                     style: Styles.textStyle14,
                   ),
                   Row(
