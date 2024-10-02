@@ -1,6 +1,6 @@
-import 'package:bookly/Features/home/presentation/views/widgets/newest_books_list_view_item.dart';
-import 'package:bookly/Features/home/presentation/views/widgets/newest_skeleton_books_list_view.dart';
 import 'package:bookly/Features/search/presentation/manager/book_search_cubit/book_search_cubit.dart';
+import 'package:bookly/core/widgets/newest_books_list_view_item.dart';
+import 'package:bookly/core/widgets/newest_skeleton_books_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
