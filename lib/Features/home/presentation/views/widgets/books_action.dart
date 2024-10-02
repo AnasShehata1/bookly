@@ -16,18 +16,16 @@ class BooksAction extends StatelessWidget {
           Expanded(
             child: CustomButton(
               onPressed: () async {
-                try {
-                  Uri uri = Uri.parse(book.accessInfo!.pdf!.acsTokenLink!);
-                  if (await canLaunchUrl(uri)) {
-                    launchUrl(uri);
-                  }
-                } catch (e) {
+                Uri uri = Uri.parse(book.accessInfo!.pdf!.acsTokenLink!);
+                if (await canLaunchUrl(uri)) {
+                  launchUrl(uri);
+                } else {
                   if (context.mounted) {
                     snackBarMsg(context, 'Unable to Download Book');
                   }
                 }
               },
-              text: 'Free',
+              text: 'Download',
               backgroundColor: Colors.white,
               textColor: Colors.black,
               borderRadius: const BorderRadius.only(
@@ -46,6 +44,10 @@ class BooksAction extends StatelessWidget {
                 Uri uri = Uri.parse(book.volumeInfo.previewLink!);
                 if (await canLaunchUrl(uri)) {
                   launchUrl(uri);
+                } else {
+                  if (context.mounted) {
+                    snackBarMsg(context, 'Unable to Preview Book');
+                  }
                 }
               },
               backgroundColor: const Color(0xffef8262),
