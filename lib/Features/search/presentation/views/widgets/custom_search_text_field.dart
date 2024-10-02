@@ -11,7 +11,12 @@ class CustomSearchTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     String book = '';
     return TextField(
-      onChanged: (value) => book = value,
+      onChanged: (value) {
+        book = value;
+        if (book != '') {
+          BlocProvider.of<BookSearchCubit>(context).getBooks(bookTitle: book);
+        }
+      },
       decoration: InputDecoration(
         enabledBorder: buildOutlineInputBorder(),
         focusedBorder: buildOutlineInputBorder(),
@@ -27,7 +32,7 @@ class CustomSearchTextField extends StatelessWidget {
         ),
         suffixIcon: IconButton(
           onPressed: () async {
-            if (book != '') {
+            if (book.isNotEmpty) {
               BlocProvider.of<BookSearchCubit>(context)
                   .getBooks(bookTitle: book);
             }
