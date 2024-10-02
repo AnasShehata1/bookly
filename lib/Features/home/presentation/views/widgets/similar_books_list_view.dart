@@ -1,6 +1,7 @@
 import 'package:bookly/Features/home/presentation/manager/similar_books_cubit/similar_books_cubit.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_error_widget.dart';
+import 'package:bookly/Features/home/presentation/views/widgets/similar_skeleton_list_view.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,7 +41,7 @@ class SimilarBooksListView extends StatelessWidget {
         } else if (state is SimilarBooksFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const SimilarSkeletonListView();
         }
       },
     );

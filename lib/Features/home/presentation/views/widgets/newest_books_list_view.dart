@@ -1,6 +1,7 @@
 import 'package:bookly/Features/home/presentation/manager/newest_books_cubit/newest_books_cubit.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/newest_books_list_view_item.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_error_widget.dart';
+import 'package:bookly/Features/home/presentation/views/widgets/newest_skeleton_books_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +28,7 @@ class NewestBooksListView extends StatelessWidget {
         } else if (state is NewestBooksFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const NewestSkeletonBooksListView();
         }
       },
     );
