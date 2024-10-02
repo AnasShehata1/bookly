@@ -13,7 +13,7 @@ class NewestSkeletonBooksListView extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
-            itemCount: 5,
+            itemCount: 6,
             itemBuilder: (context, index) {
               return const Padding(
                 padding: EdgeInsets.only(bottom: 20.0),
