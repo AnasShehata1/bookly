@@ -16,9 +16,11 @@ class BooksAction extends StatelessWidget {
           Expanded(
             child: CustomButton(
               onPressed: () async {
-                Uri uri = Uri.parse(book.accessInfo!.pdf!.acsTokenLink!);
-                if (await canLaunchUrl(uri)) {
-                  launchUrl(uri);
+                if (book.accessInfo!.pdf!.isAvailable!) {
+                  Uri uri = Uri.parse(book.accessInfo!.pdf!.acsTokenLink!);
+                  if (await canLaunchUrl(uri)) {
+                    launchUrl(uri);
+                  }
                 } else {
                   if (context.mounted) {
                     snackBarMsg(context, 'Unable to Download Book');
