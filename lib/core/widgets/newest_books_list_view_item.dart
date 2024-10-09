@@ -1,4 +1,4 @@
-import 'package:bookly/core/models/book_model/book_model.dart';
+import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:bookly/constants.dart';
@@ -22,7 +22,7 @@ class NewestBookListViewItem extends StatelessWidget {
         child: Row(
           children: [
             CustomBookImage(
-                imageUrl: book.volumeInfo.imageLinks?.smallThumbnail ?? ''),
+                imageUrl: book.volumeInfo?.imageLinks?.smallThumbnail ?? ''),
             const SizedBox(width: 30),
             Expanded(
               child: Column(
@@ -32,7 +32,7 @@ class NewestBookListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
-                      book.volumeInfo.title!,
+                      book.volumeInfo?.title??'',
                       style: Styles.textStyle20
                           .copyWith(fontFamily: kGtSectraFine),
                       maxLines: 2,
@@ -40,7 +40,7 @@ class NewestBookListViewItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    book.volumeInfo.authors?[0]??'',
+                    book.volumeInfo?.authors?[0]??'',
                     style: Styles.textStyle14,
                   ),
                   Row(
@@ -52,8 +52,8 @@ class NewestBookListViewItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       BookRating(
-                          rating: book.volumeInfo.averageRating ?? 0,
-                          count: book.volumeInfo.ratingsCount ?? 0)
+                          rating: book.volumeInfo?.averageRating ?? 0,
+                          count: book.volumeInfo?.ratingsCount ?? 0)
                     ],
                   )
                 ],

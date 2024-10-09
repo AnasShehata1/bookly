@@ -1,4 +1,4 @@
-import 'package:bookly/core/models/book_model/book_model.dart';
+import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/custom_button.dart';
 import 'package:bookly/core/helper/show_msg_snakbar.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ class BooksAction extends StatelessWidget {
               text: 'Preview',
               fontSize: 16,
               onPressed: () async {
-                Uri uri = Uri.parse(book.volumeInfo.previewLink!);
+                Uri uri = Uri.parse(book.volumeInfo!.previewLink!);
                 if (await canLaunchUrl(uri)) {
                   launchUrl(uri);
                 } else {
