@@ -47,3 +47,7 @@ class ServerFailure extends Failure {
     }
   }
 }
+
+class FailureProcess extends Failure{
+  FailureProcess(super.errMessage);
+}
