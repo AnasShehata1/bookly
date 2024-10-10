@@ -48,6 +48,9 @@ class ServerFailure extends Failure {
   }
 }
 
-class FailureProcess extends Failure{
-  FailureProcess(super.errMessage);
+class CachFailure extends Failure{
+  CachFailure(super.errMessage);
+}
+class NetworkFailure extends Failure{
+  NetworkFailure(super.errMessage);
 }
